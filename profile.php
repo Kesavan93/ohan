@@ -7,6 +7,7 @@
       break;
     }
   }
+  include 'conet.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -182,8 +183,65 @@ if(isset($_POST['probtn']))
    $ic = $_POST['ic'];
    $bdate = $_POST['bdate'];
    $job = $_POST['job'];
+
+   if (empty($_POST['cjob1'])) {
+	   $cjob1 = "";		
+	} else {
+		$cjob1 = $_POST['cjob1'];
+	}
+	
+	if (empty($_POST['cjob2'])) {
+	   $cjob2 = "";		
+	} else {
+		$cjob2 = $_POST['cjob2'];
+	}
+	
+	if (empty($_POST['cjob3'])) {
+	   $cjob3 = "";		
+	} else {
+		$cjob3 = $_POST['cjob3'];
+	}
+	
+	if (empty($_POST['cjob4'])) {
+	   $cjob4 = "";		
+	} else {
+		$cjob4 = $_POST['cjob4'];
+	}
+	
+	if (empty($_POST['cjob5'])) {
+	   $cjob5 = "";		
+	} else {
+		$cjob5 = $_POST['cjob5'];
+	}
+	
+	
+	if (empty($_POST['cjob6'])) {
+	   $cjob6 = "";		
+	} else {
+		$cjob6 = $_POST['cjob6'];
+	}
+	
+	
+	if (empty($_POST['cjob7'])) {
+	   $cjob7 = "";		
+	} else {
+		$cjob7 = $_POST['cjob7'];
+	}
+	
    
    #echo "NEW CLIENT ",$name," ADDED. CLICK NEXT!";
+   $sql = "INSERT INTO profil (prof_id, prof_name, prof_dob, prof_job, prof_c1, prof_c2, prof_c3, prof_c4, prof_c5, prof_c6, prof_c7)
+	VALUES ('$ic', '$name', '$bdate', '$job', '$cjob1', '$cjob2', '$cjob3', '$cjob4', '$cjob5', '$cjob6', '$cjob7')";
+
+	if ($conn->query($sql) === TRUE) {
+	  echo '<script>alert("New record created successfully")</script>';
+	  #echo "New record created successfully";
+	  #header('Location: waris.php');
+	  #exit();
+	} else {
+	  echo "Error: " . $sql . "<br>" . $conn->error;
+	}
+   
 } 
 
 
