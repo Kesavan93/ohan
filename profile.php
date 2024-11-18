@@ -1,12 +1,6 @@
 <?php
-  if (!empty($_GET['q'])) {
-    switch ($_GET['q']) {
-      case 'info':
-        phpinfo(); 
-        exit;
-      break;
-    }
-  }
+
+  include 'conet.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -27,6 +21,7 @@
                 display: table;
                 font-weight: 100;
                 font-family: 'Karla';
+				background-color: bisque;
             }
 
             .container {
@@ -75,7 +70,7 @@
 			}
 			
 			#nxt{
-				background-color: #04AA6D; /* Green */
+				background-color: brown;
 				border: none;
 				color: white;
 				padding: 15px 32px;
@@ -119,14 +114,14 @@
     <body>
 <div class="container">
 	<div class="content">
-		<?php include"nav.php" ?>
+		<?php include"nav.php"; ?>	
 		
-		<div class="title" title="OAHAN">OHAN RECORDS</div>
+		<div class="title" title="OHAN">OHAN RECORDS</div>
 
 		<div class="info"><br />
 		<h2>PROFIL FORM</h2>
 			<form action="" method="post">
-				<label height="100" for="name">NAMA (IC):</label><br>
+				<label height="100" for="name">NAMA PENUH:</label><br>
 				<input type="text" id="name" name="name" autocomplete="off" autofocus required oninput="this.value = this.value.toUpperCase()"><br><br>
 
 				<label for="ic">NO. (IC):</label><br>
@@ -167,30 +162,88 @@
 				<input type="checkbox" id="cjob7" name="cjob7" value="SELESAI PULANG DOCUMEN">
 				<label for="cjob7"> SELESAI PULANG DOCUMEN </label><br><br><br><br>
 </div>				
-				<input type="submit" name="probtn" value="SUBMIT">
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<a id="nxt" href="waris.php">NEXT</a>
+				<input type="submit" name="probtn" value="SAVE">
+
+			
 			</form>
 			
-			
-<?php
+		</div>
 
-if(isset($_POST['probtn']))
-{
+<?php
+if(isset($_POST['probtn'])){
+
    $name = $_POST['name'];
    $ic = $_POST['ic'];
    $bdate = $_POST['bdate'];
    $job = $_POST['job'];
+
+   if (empty($_POST['cjob1'])) {
+	   $cjob1 = "";		
+	} else {
+		$cjob1 = $_POST['cjob1'];
+	}
+	
+	if (empty($_POST['cjob2'])) {
+	   $cjob2 = "";		
+	} else {
+		$cjob2 = $_POST['cjob2'];
+	}
+	
+	if (empty($_POST['cjob3'])) {
+	   $cjob3 = "";		
+	} else {
+		$cjob3 = $_POST['cjob3'];
+	}
+	
+	if (empty($_POST['cjob4'])) {
+	   $cjob4 = "";		
+	} else {
+		$cjob4 = $_POST['cjob4'];
+	}
+	
+	if (empty($_POST['cjob5'])) {
+	   $cjob5 = "";		
+	} else {
+		$cjob5 = $_POST['cjob5'];
+	}
+	
+	
+	if (empty($_POST['cjob6'])) {
+	   $cjob6 = "";		
+	} else {
+		$cjob6 = $_POST['cjob6'];
+	}
+	
+	
+	if (empty($_POST['cjob7'])) {
+	   $cjob7 = "";		
+	} else {
+		$cjob7 = $_POST['cjob7'];
+	}
+	
    
    #echo "NEW CLIENT ",$name," ADDED. CLICK NEXT!";
-} 
+   $sql = "INSERT INTO profil (prof_ic, prof_name, prof_dob, prof_job, prof_c1, prof_c2, prof_c3, prof_c4, prof_c5, prof_c6, prof_c7)
+	VALUES ('$ic', '$name', '$bdate', '$job', '$cjob1', '$cjob2', '$cjob3', '$cjob4', '$cjob5', '$cjob6', '$cjob7')";
 
+	if ($conn->query($sql) === TRUE) {
+	  echo $name.' record created successfully';
+	  mkdir("C:\\laragon\\www\\ohan\\profile\\".$ic);
+	  echo "<br><br><br><a id='nxt' href='waris.php?ic=$ic&name=$name'>NEXT : WARIS</a>";
+
+	} else {
+	  echo "Error: " . $sql . "<br>" . $conn->error;
+	}
+}
 
 
 ?>
+
+
 		
-		</div>
+		
+		
+		
 		
 <div class="opt">
 

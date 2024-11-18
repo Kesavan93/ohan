@@ -1,12 +1,5 @@
 <?php
-  if (!empty($_GET['q'])) {
-    switch ($_GET['q']) {
-      case 'info':
-        phpinfo(); 
-        exit;
-      break;
-    }
-  }
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -27,6 +20,7 @@
                 display: table;
                 font-weight: 100;
                 font-family: 'Karla';
+				background-color: bisque;
             }
 
             .container {
@@ -97,7 +91,7 @@
     <body>
 <div class="container">
 	<div class="content">
-		<?php include"nav.php" ?>
+		<?php include"nav.php"; ?>
 		
 		<div class="title" title="OAHAN">OHAN RECORDS</div>
 

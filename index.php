@@ -47,7 +47,7 @@
 	<div class="content">
 		<?php include"nav.php" ?>
 		
-		<div class="title" title="OAHAN">OHAN RECORDS</div>
+		<img src="ohan.jpg" alt="Italian Trulli">
 
 		
 <div class="opt">
