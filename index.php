@@ -11,7 +11,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>HOME</title>
+        <title>OHAN HOME</title>
 
         <link href="https://fonts.googleapis.com/css?family=Karla:400" rel="stylesheet" type="text/css">
 
@@ -40,6 +40,12 @@
                 font-size: 80px;
 				color: coral;
             }
+			
+			img {
+			  height: 25%;
+			  width: 25%;
+			  border-radius: 30%;
+			}
         </style>
     </head>
     <body>
@@ -47,7 +53,7 @@
 	<div class="content">
 		<?php include"nav.php" ?>
 		
-		<div class="title" title="OAHAN">OHAN RECORDS</div>
+		<img src="ohan.jpg" alt="Italian Trulli" >
 
 		
 <div class="opt">

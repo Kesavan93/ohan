@@ -1,11 +1,22 @@
 <?php
+include 'conet.php';
 
-  include 'conet.php';
+if(!empty($_GET['ic'])){
+	$ic = $_GET['ic'];
+}else{
+	$ic = '';
+}
+
+if(!empty($_GET['name'])){
+	$name = $_GET['name'];
+}else{
+	$name = '';
+}
 ?>
 <!DOCTYPE html>
 <html>
     <head>
-        <title>PROFILE REG</title>
+        <title><?php echo $name; ?> PROFILE</title>
 
         <link href="https://fonts.googleapis.com/css?family=Karla:400" rel="stylesheet" type="text/css">
 
@@ -65,7 +76,20 @@
 				padding: 15px 32px;
 				text-align: center;
 				text-decoration: none;
-				font-size: 36px;
+				display: inline-block;
+				font-size: 30px;
+			}
+			
+			input[type="button"]
+			{
+				background-color: red;
+				border: none;
+				color: white;
+				padding: 15px 32px;
+				text-align: center;
+				text-decoration: none;
+				display: inline-block;
+				font-size: 30px;
 			}
 			
 			#nxt{
@@ -118,18 +142,28 @@
 		
 
 		<div class="info">
-		<h2>PROFIL FORM</h2>
+		<h2>EDIT PROFIL : <?php echo $name; ?></h2>
 			<form action="" method="post">
+			<?php
+			
+				$sql = "SELECT * FROM profil WHERE prof_ic=$ic";
+				$result = $conn->query($sql);
+
+				if ($result->num_rows > 0) {
+				  // output data of each row
+				  while($row = $result->fetch_assoc()) {
+					  ?>				
+			
 				<label height="100" for="name">NAMA PENUH:</label><br>
-				<input type="text" id="name" name="name" autocomplete="off" autofocus required oninput="this.value = this.value.toUpperCase()"><br><br>
+				<input type="text" id="name" name="name" value="<?php echo $row["prof_name"]; ?>" autocomplete="off" autofocus readonly><br><br>
 
 				<label for="ic">NO. (IC):</label><br>
-				<input type="text" id="ic" name="ic" autocomplete="off" required><br><br>
+				<input type="text" id="ic" name="ic" value="<?php echo $row["prof_ic"]; ?>" autocomplete="off" readonly><br><br>
 
-				<label  for="bdate">TARIKH DAFTAR:</label><br>
-				<input type="date" id="bdate" name="bdate" autocomplete="off" value="<?php echo date('Y-m-d'); ?>" required><br><br>
+				<label  for="bdate">TARIKH LAHIR:</label><br>
+				<input type="date" id="bdate" name="bdate" value="<?php echo $row["prof_dob"]; ?>" autocomplete="off" readonly><br><br>
 
-				<label for="job">CHOOSE JOB:</label><br>
+				<label for="job">CHOOSE JOB: <i style="color:red;">edit</i></label><br>
 				<select name="job" id="job" required>
 					<option value="HIBAH" > HIBAH </option>
 					<option value="PUSAKA" > PUSAKA </option>
@@ -139,7 +173,7 @@
 					<option value="DLL" selected> DLL </option>
 				</select><br><br>
 
-				<label for="job">CHECKLIST JOB:</label><br><br>
+				<label for="job">CHECKLIST JOB: <i  style="color:red;">edit</i></label><br><br>
 				<input type="checkbox" id="cjob1" name="cjob1" value="SEMAK DOCUMENT">
 				<label for="cjob1"> SEMAK DOCUMENT </label><br>
 
@@ -160,10 +194,18 @@
 				
 				<input type="checkbox" id="cjob7" name="cjob7" value="SELESAI PULANG DOCUMEN">
 				<label for="cjob7"> SELESAI PULANG DOCUMEN </label><br>
-			
-				<input type="submit" name="probtn" value="SAVE">
 
-			
+				
+				<input type="submit" name="probtn" value="SAVE">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<input type="button" name="exit" value="CLOSE EDIT" onclick="window.open('', '_self', ''); window.close();"">
+
+<?php
+  }
+} else {
+  echo "0 results";
+}
+?>			
 			</form>
 			
 		</div>
@@ -222,38 +264,23 @@ if(isset($_POST['probtn'])){
 	
 	
 	
-	$sql = "SELECT * FROM profil WHERE prof_ic=$ic";
-	$result = $conn->query($sql);
+	$sql = "UPDATE profil SET prof_job='$job', prof_c1='$cjob1', prof_c2='$cjob2', prof_c3='$cjob3', prof_c4='$cjob4', prof_c5='$cjob5', prof_c6='$cjob6', prof_c7='$cjob7' WHERE prof_ic='$ic'";
 
-	if ($result->num_rows > 0) {
-	  echo $name.' record already exist!!!';
-	  #mkdir("C:\\laragon\\www\\ohan\\profile\\".$ic);
-	  echo "<br><br><br><a id='nxt' href='waris.php?ic=$ic&name=$name'>NEXT : WARIS</a>";
+	if ($conn->query($sql) === TRUE) {
+	  echo $ic." Record updated ";
+	  date_default_timezone_set("Asia/Kuala_Lumpur");
+	  echo "<br>TIME :  " . date("h:i:sa");
 	} else {
-		  $sql1 = "INSERT INTO profil (prof_ic, prof_name, prof_dob, prof_job, prof_c1, prof_c2, prof_c3, prof_c4, prof_c5, prof_c6, prof_c7)
-		VALUES ('$ic', '$name', '$bdate', '$job', '$cjob1', '$cjob2', '$cjob3', '$cjob4', '$cjob5', '$cjob6', '$cjob7')";
-
-		if ($conn->query($sql1) === TRUE) {
-		  echo $name.' record created successfully';
-		  mkdir("C:\\laragon\\www\\ohan\\profile\\".$ic);
-		  echo "<br><br><br><a id='nxt' href='waris.php?ic=$ic&name=$name'>NEXT : WARIS</a>";
-
-		} else {
-		  echo "Error: " . $sql1 . "<br>" . $conn->error;
-		}
+	  echo "Error updating record: " . $conn->error;
 	}
+
+	#$conn->close();
    
    
 }
 
 
 ?>
-
-
-		
-		
-		
-		
 		
 <div class="opt">
 

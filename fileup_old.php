@@ -140,61 +140,67 @@ $name = $_GET['name'];
 			
 		</div>
 <?php
-
 if(isset($_FILES['filename1'])){
-	if(!empty($_FILES['filename1']['name'])){
-		$name_file1 = $_FILES['filename1']['name'];
-		$tmp_name1 = $_FILES['filename1']['tmp_name'];
-		$local_image1 = "profile/$ic/";
-		move_uploaded_file($tmp_name1, $local_image1.$name_file1);
-		$extension1 = pathinfo($name_file1,PATHINFO_EXTENSION);
+	
+	$name_file1 = $_FILES['filename1']['name'];
+	$tmp_name1 = $_FILES['filename1']['tmp_name'];
+	$local_image1 = "profile/$ic/";
+	move_uploaded_file($tmp_name1, $local_image1.$name_file1);
+	$extension1 = pathinfo($name_file1,PATHINFO_EXTENSION);
+	if(file_exists($name_file1)){
 		rename($local_image1.$name_file1, $local_image1."client_mykad.$extension1");
 	}
 	
 }
 
 if(isset($_FILES['filename2'])){
-	if(!empty($_FILES['filename2']['name'])){
-		$name_file2 = $_FILES['filename2']['name'];
-		$tmp_name2 = $_FILES['filename2']['tmp_name'];
-		$local_image2 = "profile/$ic/";
-		move_uploaded_file($tmp_name2, $local_image2.$name_file2);
-		$extension2 = pathinfo($name_file2,PATHINFO_EXTENSION);
+	
+	$name_file2 = $_FILES['filename2']['name'];
+	$tmp_name2 = $_FILES['filename2']['tmp_name'];
+	$local_image2 = "profile/$ic/";
+	move_uploaded_file($tmp_name2, $local_image2.$name_file2);
+	$extension2 = pathinfo($name_file2,PATHINFO_EXTENSION);
+	if(file_exists($name_file2)){
 		rename($local_image2.$name_file2, $local_image2."waris_mykad.$extension2");
 	}
+	
 }
 
 if(isset($_FILES['filename3'])){
-	if(!empty($_FILES['filename3']['name'])){
-		$name_file3 = $_FILES['filename3']['name'];
-		$tmp_name3 = $_FILES['filename3']['tmp_name'];
-		$local_image3 = "profile/$ic/";
-		move_uploaded_file($tmp_name3, $local_image3.$name_file3);
-		$extension3 = pathinfo($name_file3,PATHINFO_EXTENSION);
+	
+	$name_file3 = $_FILES['filename3']['name'];
+	$tmp_name3 = $_FILES['filename3']['tmp_name'];
+	$local_image3 = "profile/$ic/";
+	move_uploaded_file($tmp_name3, $local_image3.$name_file3);
+	$extension3 = pathinfo($name_file3,PATHINFO_EXTENSION);
+	if(file_exists($name_file3)){
 		rename($local_image3.$name_file3, $local_image3."surat_mati.$extension3");
 	}
 	
 }
 
 if(isset($_FILES['filename4'])){
-	if(!empty($_FILES['filename4']['name'])){
-		$name_file4 = $_FILES['filename4']['name'];
-		$tmp_name4 = $_FILES['filename4']['tmp_name'];
-		$local_image4 = "profile/$ic/";
-		move_uploaded_file($tmp_name4, $local_image4.$name_file4);
-		$extension4 = pathinfo($name_file4,PATHINFO_EXTENSION);
+	
+	$name_file4 = $_FILES['filename4']['name'];
+	$tmp_name4 = $_FILES['filename4']['tmp_name'];
+	$local_image4 = "profile/$ic/";
+	move_uploaded_file($tmp_name4, $local_image4.$name_file4);
+	$extension4 = pathinfo($name_file4,PATHINFO_EXTENSION);
+	if(file_exists($name_file4)){
 		rename($local_image4.$name_file4, $local_image4."surat_beranak.$extension4");
-	}	
+	}
+	
 }
 
 
 if(isset($_FILES['filename5'])){
-	if(!empty($_FILES['filename5']['name'])){
-		$name_file5 = $_FILES['filename5']['name'];
-		$tmp_name5 = $_FILES['filename5']['tmp_name'];
-		$local_image5 = "profile/$ic/";
-		move_uploaded_file($tmp_name5, $local_image5.$name_file5);
-		$extension5 = pathinfo($name_file5,PATHINFO_EXTENSION);
+	
+	$name_file5 = $_FILES['filename5']['name'];
+	$tmp_name5 = $_FILES['filename5']['tmp_name'];
+	$local_image5 = "profile/$ic/";
+	move_uploaded_file($tmp_name5, $local_image5.$name_file5);
+	$extension5 = pathinfo($name_file5,PATHINFO_EXTENSION);
+	if(file_exists($name_file5)){
 		rename($local_image5.$name_file5, $local_image5."sijil_nikah.$extension5");
 	}
 	
@@ -202,12 +208,13 @@ if(isset($_FILES['filename5'])){
 
 
 if(isset($_FILES['filename6'])){
-	if(!empty($_FILES['filename6']['name'])){
-		$name_file6 = $_FILES['filename6']['name'];
-		$tmp_name6 = $_FILES['filename6']['tmp_name'];
-		$local_image6 = "profile/$ic/";
-		move_uploaded_file($tmp_name6, $local_image6.$name_file6);
-		$extension6 = pathinfo($name_file6,PATHINFO_EXTENSION);
+	
+	$name_file6 = $_FILES['filename6']['name'];
+	$tmp_name6 = $_FILES['filename6']['tmp_name'];
+	$local_image6 = "profile/$ic/";
+	move_uploaded_file($tmp_name6, $local_image6.$name_file6);
+	$extension6 = pathinfo($name_file6,PATHINFO_EXTENSION);
+	if(file_exists($name_file6)){
 		rename($local_image6.$name_file6, $local_image6."harta_alih.$extension6");
 	}
 	
@@ -215,14 +222,16 @@ if(isset($_FILES['filename6'])){
 
 
 if(isset($_FILES['filename7'])){
-	if(!empty($_FILES['filename7']['name'])){
-		$name_file7 = $_FILES['filename7']['name'];
-		$tmp_name7 = $_FILES['filename7']['tmp_name'];
-		$local_image7 = "profile/$ic/";
-		move_uploaded_file($tmp_name7, $local_image7.$name_file7);
-		$extension7 = pathinfo($name_file7,PATHINFO_EXTENSION);
+	
+	$name_file7 = $_FILES['filename7']['name'];
+	$tmp_name7 = $_FILES['filename7']['tmp_name'];
+	$local_image7 = "profile/$ic/";
+	move_uploaded_file($tmp_name7, $local_image7.$name_file7);
+	$extension7 = pathinfo($name_file7,PATHINFO_EXTENSION);
+	if(file_exists($name_file7)){
 		rename($local_image7.$name_file7, $local_image7."harta_x_alih.$extension7");
 	}
+	
 }
 
 $path = "profile/$ic";
@@ -237,6 +246,11 @@ echo "<br><br><br><a id='nxt' href='search.php?ic=$ic&name=$name'>FINISH REGISTR
 		
 <div class="opt">
 	
+	<form action=""  method="post">
+
+			  
+<!--			  <input type="submit" name="upbtn" value="UPLOAD">
+-->	</form>
 
 </div>
 </div>

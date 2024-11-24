@@ -126,8 +126,8 @@
 				<label for="ic">NO. (IC):</label><br>
 				<input type="text" id="ic" name="ic" autocomplete="off" required><br><br>
 
-				<label  for="bdate">TARIKH DAFTAR:</label><br>
-				<input type="date" id="bdate" name="bdate" autocomplete="off" value="<?php echo date('Y-m-d'); ?>" required><br><br>
+				<label  for="bdate">TARIKH LAHIR:</label><br>
+				<input type="date" id="bdate" name="bdate" autocomplete="off" required><br><br>
 
 				<label for="job">CHOOSE JOB:</label><br>
 				<select name="job" id="job" required>
